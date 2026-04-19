@@ -24,7 +24,8 @@ Enabling the Teams channel on Bot:
 <img width="900" height="898" alt="image" src="https://github.com/user-attachments/assets/16f52a95-b7fd-46ff-8619-9a36c2f9fa45" />
 Installing Azure core functions on the laptop 
 npm install -g azure-functions-core-tools@4 --unsafe-perm true
-E
+Day 3:
+
 
 
 
