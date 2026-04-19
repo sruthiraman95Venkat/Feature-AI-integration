@@ -70,6 +70,21 @@ to provision the user.
 - [ ] Deployed to Azure
 - [ ] Connected to Teams bot
 
+Started the function and noticed that there is no storage so installed Azurite
+npm install -g azurite
+azurite
+Tried running on a different terminal now and noticed that still getting a error (but a different one) this time 
+Invoke-RestMethod -Uri "http://localhost:7071/api/HttpTrigger" `
+>>   -Method POST `
+>>   -ContentType "application/json" `
+>>   -Body '{"message": "I need Finance access", "userName": "xxxxxx.onmicrosoft.com"}'
+This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.
+ Checked Requirements.txt and noticed that openai and requests are not added to the file, added them both and saved them.
+
+ Still got the same error , so cleared all the terminal and restarted the Azurite and func and run the Invoke command and worked <img width="1167" height="139" alt="image" src="https://github.com/user-attachments/assets/04cc5a9b-d708-4dae-a270-f8b8bc38d630" />
+
+
+
 
 
 
