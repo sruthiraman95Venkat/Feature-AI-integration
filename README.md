@@ -24,7 +24,27 @@ Enabling the Teams channel on Bot:
 <img width="900" height="898" alt="image" src="https://github.com/user-attachments/assets/16f52a95-b7fd-46ff-8619-9a36c2f9fa45" />
 Installing Azure core functions on the laptop 
 npm install -g azure-functions-core-tools@4 --unsafe-perm true
-Day 3:
+Day 3: Initiating Azure Functions within python:
+mkdir bot-ai-provisioning
+cd bot-ai-provisioning
+func init --python
+Noticed that the below files were created
+Writing requirements.txt
+Writing function_app.py
+Writing .gitignore
+Writing host.json
+Writing local.settings.json
+Writing C:\Users\Sruthi\OneDrive\botAIProvisioning\bot-ai-provisioning\.vscode\extensions.json
+Creating the actual function inside Python:
+func new --name HttpTrigger --template "HTTP trigger" --authlevel anonymous
+This command creates a new function within Python by the name "HttpTrigger" which uses the existing template "HTTP Tigger"
+--authlevel anonymous - meaning anyone can call this function without a key, In Prod we would set it as function or admin so only specific users can trigger the function
+Opened the project in VSCode and under function_app.py will be the default template code that Azure creates. 
+Installed the required Python libraries
+pip install azure-functions openai requests
+
+
+
 
 
 
