@@ -42,6 +42,33 @@ This command creates a new function within Python by the name "HttpTrigger" whic
 Opened the project in VSCode and under function_app.py will be the default template code that Azure creates. 
 Installed the required Python libraries
 pip install azure-functions openai requests
+Run the script and understood what it does
+## Azure Function (bot-ai-provisioning)
+
+### What it does:
+Receives a message from the Teams bot, sends it to Azure OpenAI 
+to extract the department, then triggers the Logic App webhook 
+to provision the user.
+
+### Flow:
+1. Receives message + username from Teams bot
+2. Sends message to GPT-4.1-mini to extract department
+3. Calls Logic App webhook with username + department
+4. Returns confirmation message
+
+### Files:
+- `function_app.py` — main function code
+- `local.settings.json` — local config (not pushed to Git)
+- `requirements.txt` — Python dependencies
+- `host.json` — Azure Function settings
+
+### Status:
+- [x] Azure Function created
+- [x] OpenAI integration coded
+- [x] Logic App webhook connected
+- [ ] Tested locally
+- [ ] Deployed to Azure
+- [ ] Connected to Teams bot
 
 
 
