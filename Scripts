@@ -1,0 +1,54 @@
+import azure.functions as func
+import json
+import logging
+import requests
+from openai import AzureOpenAI
+
+app = func.FunctionApp()
+
+# Azure OpenAI settings
+AZURE_OPENAI_ENDPOINT = "your-endpoint-here"
+AZURE_OPENAI_KEY = "your-key-here"
+AZURE_OPENAI_DEPLOYMENT = "gpt-4.1-mini"
+
+# Logic App webhook URL
+LOGIC_APP_URL = "your-logic-app-webhook-url-here"
+
+client = AzureOpenAI(
+    azure_endpoint=AZURE_OPENAI_ENDPOINT,
+    api_key=AZURE_OPENAI_KEY,
+    api_version="2024-02-01"
+)
+
+@app.route(route="HttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
+def HttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Bot request received.')
+
+    # Get message from Teams bot
+    req_body = req.get_json()
+    user_message = req_body.get('message')
+    user_name = req_body.get('userName')
+
+    # Send to OpenAI to extract department
+    response = client.chat.completions.create(
+        model=AZURE_OPENAI_DEPLOYMENT,
+        messages=[
+            {"role": "system", "content": "You are an IT provisioning assistant. Extract the department name from the user's access request. Reply with only the department name: Finance, HR, IT, or Sales."},
+            {"role": "user", "content": user_message}
+        ]
+    )
+
+    department = response.choices[0].message.content.strip()
+    logging.info(f"Department extracted: {department}")
+
+    # Trigger Logic App
+    payload = {
+        "userName": user_name,
+        "department": department
+    }
+    requests.post(LOGIC_APP_URL, json=payload)
+
+    return func.HttpResponse(
+        f"Access request received! Adding {user_name} to {department} group.",
+        status_code=200
+    )
