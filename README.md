@@ -82,6 +82,10 @@ This HTTP triggered function executed successfully. Pass a name in the query str
  Checked Requirements.txt and noticed that openai and requests are not added to the file, added them both and saved them.
 
  Still got the same error , so cleared all the terminal and restarted the Azurite and func and run the Invoke command and worked <img width="1167" height="139" alt="image" src="https://github.com/user-attachments/assets/04cc5a9b-d708-4dae-a270-f8b8bc38d630" />
+ Day 4: Created storage Account: stbotaiprovisioning
+ Installed Azure CLI 
+ <img width="1031" height="350" alt="image" src="https://github.com/user-attachments/assets/574b4e90-68ae-404b-a4d2-dbab933fc39d" />
+
 
 
 
